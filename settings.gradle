@@ -1,0 +1,14 @@
+include ':biz-hot'
+include ':biz-dscover'
+include ':biz-daily'
+include ':biz-home'
+include ':lib-common'
+include ':biz-provider'
+include ':app'
+rootProject.name = "Hybrid-Eyepetizer"
+
+include ':ui-library'
+project(':ui-library').projectDir = "../WsRepository/ui-library" as File
+
+include ':ws-library'
+project(':ws-library').projectDir = "../WsRepository/ws-library" as File

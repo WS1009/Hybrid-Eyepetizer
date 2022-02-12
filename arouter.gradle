@@ -1,0 +1,13 @@
+//ARouter配置
+apply plugin: 'kotlin-kapt'
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+
+dependencies {
+    implementation "com.alibaba:arouter-api:1.5.0"
+    kapt "com.alibaba:arouter-compiler:1.2.2"
+}
