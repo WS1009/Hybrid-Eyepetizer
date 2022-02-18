@@ -20,6 +20,7 @@ object RouterPath {
     class Hot {
         companion object {
             const val PATH_HOT_HOME = "/hot/home"
+            const val PATH_ROUTE_HOME = "/route/home"
         }
     }
 

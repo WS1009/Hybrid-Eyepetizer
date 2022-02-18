@@ -9,7 +9,7 @@ buildscript {
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.0.0"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.0"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -28,8 +28,8 @@ allprojects {
 subprojects { subProject ->
 
     if (subProject.getName().startsWith("biz-")) {
-//        apply from: "../arouter.gradle"
-        apply from: "../common_module_config.gradle"
+        apply from: "../module_config.gradle"
+        apply from: "../arouter.gradle"
 
         dependencies {
             implementation fileTree(dir: "libs", include: ["*.jar"])
@@ -39,15 +39,16 @@ subprojects { subProject ->
             implementation rootProject.ext.androidx["androidx.appcompat"]
             implementation rootProject.ext.androidx["androidx.core"]
 
-            if (subProject.getName() != "biz-provider") {
+            if (subProject.getName() != "biz-provider") {//biz业务模块的配置
                 implementation project(path: ':lib-common')
                 implementation project(path: ':biz-provider')
 
-//                implementation project(path: ':ui-library')
-//                implementation project(path: ':ws-library')
+                implementation project(path: ':ui-library')
+                implementation project(path: ':ws-library')
 
-            } else {
+            } else {//biz-provider的gradle配置
                 implementation project(path: ':lib-common')
+                implementation project(path: ':ws-library')
             }
         }
     }

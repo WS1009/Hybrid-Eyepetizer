@@ -4,7 +4,6 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
-import android.widget.Toast;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
@@ -14,8 +13,10 @@ import androidx.fragment.app.FragmentManager;
 
 import com.ws.eyepetizer.common.tab.HiFragmentTabView;
 import com.ws.eyepetizer.common.tab.HiTabViewAdapter;
-import com.ws.eyepetizer.home.HomePageFragment;
+import com.ws.eyepetizer.daily.fragment.DailyPageFragment;
+import com.ws.eyepetizer.discover.fragment.DiscoverPageFragment;
 import com.ws.eyepetizer.hot.HotPageFragment;
+import com.ws.eyepetizer.persion.PersonPageFragment;
 import com.ws.lib.util.HiViewUtil;
 import com.ws.ui.tab.bottom.HiTabBottomInfo;
 import com.ws.ui.tab.bottom.HiTabBottomLayout;
@@ -50,15 +51,25 @@ public class MainActivityLogic {
         int defaultColor = activityProvider.getResources().getColor(R.color.tabBottomDefaultColor);
         int tintColor = activityProvider.getResources().getColor(R.color.tabBottomTintColor);
 
-        HiTabBottomInfo homeInfo = new HiTabBottomInfo<Integer>(
-                "首页",
+        HiTabBottomInfo dailyInfo = new HiTabBottomInfo<Integer>(
+                "日报",
                 "fonts/iconfont.ttf",
                 activityProvider.getString(R.string.if_home),
                 null,
                 defaultColor,
                 tintColor
         );
-        homeInfo.fragment = HomePageFragment.class;
+        dailyInfo.fragment = DailyPageFragment.class;
+
+        HiTabBottomInfo disCoverInfo = new HiTabBottomInfo<Integer>(
+                "发现",
+                "fonts/iconfont.ttf",
+                activityProvider.getString(R.string.if_favorite),
+                null,
+                defaultColor,
+                tintColor
+        );
+        disCoverInfo.fragment = DiscoverPageFragment.class;
 
         HiTabBottomInfo hotInfo = new HiTabBottomInfo<Integer>(
                 "热点",
@@ -70,9 +81,21 @@ public class MainActivityLogic {
         );
         hotInfo.fragment = HotPageFragment.class;
 
+        HiTabBottomInfo personInfo = new HiTabBottomInfo<Integer>(
+                "我的",
+                "fonts/iconfont.ttf",
+                activityProvider.getString(R.string.if_profile),
+                null,
+                defaultColor,
+                tintColor
+        );
+        personInfo.fragment = PersonPageFragment.class;
 
-        infoList.add(homeInfo);
+
+        infoList.add(dailyInfo);
+        infoList.add(disCoverInfo);
         infoList.add(hotInfo);
+        infoList.add(personInfo);
         hiTabBottomLayout.inflateInfo(infoList);
 
         initFragmentTabView();

@@ -7,7 +7,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.ws.lib.util.HiStatusBar
 
-class MainActivity : AppCompatActivity(), MainActivityLogic.ActivityProvider {
+class MainActivity : AppCompatActivity(),
+    MainActivityLogic.ActivityProvider {
     private var activityLogic: MainActivityLogic? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
